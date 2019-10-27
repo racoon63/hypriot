@@ -12,4 +12,24 @@ I would also recommend to provide a cloud-config file for cloud-init. You will f
 
 ## Configuration
 
-When you want to reconfigure your hypriot host, you have to login your hypriot host and go to `/var/lib/cloud/`. In this directory there are the configuration files of your hypriot hosts. The configuration is stored permanently in these. People reported that their configurations like hostname, locales etc. are not saved permanently. When you change them in here, they are permanent even after rebooting your host.
+To configure your host, use a cloud-config file.
+
+### Reconfiguration
+
+When you want to reconfigure your hypriot host, you have to login your hypriot host and go to `/boot/`. In this directory there are various configuration files of your hypriot host. The configuration is stored permanently in these. If you want to reconfigure your host then edit `/boot/user-data`, close and save the cloud-config file. Afterwards run:
+
+```bash
+sudo cloud-init clean
+```
+
+to clean the current config. Use
+
+```bash
+sudo cloud-init init
+```
+
+to rebuild the config. To apply the config reboot the host with:
+
+```bash
+sudo reboot now
+```
