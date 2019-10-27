@@ -1,0 +1,16 @@
+#cloud-config
+
+hostname: YOUR-HOSTNAME
+locale: "en_US.UTF-8"
+timezone: "Europe/Berlin"
+
+users:
+  - name: racoon
+    gecos: "Hypriot Pirate"
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker
+    plain_text_passwd: hypriot
+    lock_passwd: false
+    ssh_pwauth: true
+    chpasswd: { expire: false }
