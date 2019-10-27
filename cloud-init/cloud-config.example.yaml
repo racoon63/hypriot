@@ -1,16 +1,48 @@
 #cloud-config
 
-hostname: YOUR-HOSTNAME
+hostname: node1
+manage_etc_hosts: true
 locale: "en_US.UTF-8"
-timezone: "Europe/Berlin"
 
 users:
-  - name: racoon
+  - name: pirate
     gecos: "Hypriot Pirate"
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
-    groups: users,docker
+    groups: users,docker,video,input
     plain_text_passwd: hypriot
     lock_passwd: false
     ssh_pwauth: true
     chpasswd: { expire: false }
+
+# # Set the timezone
+# # Value of 'timezone' must exist in /usr/share/zoneinfo
+timezone: "Europe/Berlin"
+
+# # Update apt packages on first boot
+# package_update: true
+# package_upgrade: true
+# package_reboot_if_required: true
+package_upgrade: false
+
+packages:
+ - git
+ - vim
+
+# static IP address configuration
+write_files:
+  - content: |
+      persistent
+      # Generate Stable Private IPv6 Addresses instead of hardware based ones
+      slaac private
+      # static IP configuration:
+      interface eth0
+      static ip_address=192.168.178.100/24
+      # static ip6_address=fd51:42f8:caae:d92e::ff/64
+      static routers=192.168.178.1
+      static domain_name_servers=192.168.178.1 1.1.1.1 1.0.0.1
+    path: /etc/dhcpcd.conf
+
+runcmd:
+  # Pickup the hostname changes
+  - 'systemctl restart avahi-daemon'
