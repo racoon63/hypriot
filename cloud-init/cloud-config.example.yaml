@@ -14,6 +14,21 @@ users:
     lock_passwd: false
     ssh_pwauth: true
     chpasswd: { expire: false }
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxWCf7JEybhoFH4UpB6rT48SQtBPHXXZojUH/JupYrPX79oLRxX/QNLFuWYRR9n0as9b/n4bxsNmxZio/lqSnnS12ct2thpL4sEEa180D6VIpZ5U0YIqgz1SrzOqO5V+zB4w52i2qjajzThRDbf05c4vIQ4dJqRcK4DNgBe0AuUiSuHiThO9c5kyGFo+dm+iHbT81t2M+svFt/PDWjh2L0j1PQR6ADMIdPM/k601fWgJkZZGtFGd4v+DS1iOuQSRW3LG8PbbvQpZyfgI3MX/HvJ3BHZ5h2XnbKySOXOuhAqdceKH4GbE9J/C5HgFSAnxvrBBM+jA0GRvfMiYXV2mgWDnUL5QMZKn99ASYNn8Q4mQNbXGS9rVjlOuml62z5Kx2+qGxNYML2bwEny0tek34zuzUWARoF/enqccPjT4O5ZUUS5+WMn3fCmyx7xE3/QDB2V/YeqvnP5KRS2jtUqwKb455QAUKlrYBcnxcKyHlBT99ScF+1IyxOZO1bycV9xaSK88ikH0R2FTI5tyt3zfS+ql+sQuEYFAcYkZafIhJawoCDA28Oc6hDyH3bQ5I12oLsGvzvBRiQm7OvHy2mGmvRyJkL1m7fyDW0l7fljO1lybL+ARkKOm51PRDuCKUqq8y892MBQrApZbSjQC83HsN/5Y8EkU2vFlKqYK6ubnvGGw== p.lubach@C02XRL33JG5J.fritz.box
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2FXCCyB3n1D1CsBPx/2aF6VczxMhbu5yIW3Cd/+MNW p.lubach@reply.de
+  - name: racoon
+    gecos: "Hypriot Pirate"
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: users,docker
+    plain_text_passwd: hypriot
+    lock_passwd: true
+    ssh_pwauth: true
+    chpasswd: { expire: false }
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxWCf7JEybhoFH4UpB6rT48SQtBPHXXZojUH/JupYrPX79oLRxX/QNLFuWYRR9n0as9b/n4bxsNmxZio/lqSnnS12ct2thpL4sEEa180D6VIpZ5U0YIqgz1SrzOqO5V+zB4w52i2qjajzThRDbf05c4vIQ4dJqRcK4DNgBe0AuUiSuHiThO9c5kyGFo+dm+iHbT81t2M+svFt/PDWjh2L0j1PQR6ADMIdPM/k601fWgJkZZGtFGd4v+DS1iOuQSRW3LG8PbbvQpZyfgI3MX/HvJ3BHZ5h2XnbKySOXOuhAqdceKH4GbE9J/C5HgFSAnxvrBBM+jA0GRvfMiYXV2mgWDnUL5QMZKn99ASYNn8Q4mQNbXGS9rVjlOuml62z5Kx2+qGxNYML2bwEny0tek34zuzUWARoF/enqccPjT4O5ZUUS5+WMn3fCmyx7xE3/QDB2V/YeqvnP5KRS2jtUqwKb455QAUKlrYBcnxcKyHlBT99ScF+1IyxOZO1bycV9xaSK88ikH0R2FTI5tyt3zfS+ql+sQuEYFAcYkZafIhJawoCDA28Oc6hDyH3bQ5I12oLsGvzvBRiQm7OvHy2mGmvRyJkL1m7fyDW0l7fljO1lybL+ARkKOm51PRDuCKUqq8y892MBQrApZbSjQC83HsN/5Y8EkU2vFlKqYK6ubnvGGw== p.lubach@C02XRL33JG5J.fritz.box
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ2FXCCyB3n1D1CsBPx/2aF6VczxMhbu5yIW3Cd/+MNW p.lubach@reply.de
 
 # # Set the timezone
 # # Value of 'timezone' must exist in /usr/share/zoneinfo
@@ -26,8 +41,8 @@ timezone: "Europe/Berlin"
 package_upgrade: false
 
 packages:
- - git
- - vim
+  - git
+  - vim
 
 # static IP address configuration
 write_files:
