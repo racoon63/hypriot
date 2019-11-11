@@ -43,3 +43,9 @@ apt-get install -y docker-ce=5:18.09.0~3-0~raspbian-stretch docker-ce-cli=5:18.0
 Following CNI are supported:
 
 * flannel
+
+## Troubleshooting
+
+Can not access DaemonSet:
+
+run `iptables -A FORWARD -j ACCEPT` as root to allow forwarding of incoming traffic to the pods.
